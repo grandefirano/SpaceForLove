@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.grandefirano.spaceforlove.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_photo_matcher"
+            app:destination="@id/navigation_photo_matcher" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_match_list"
+            app:destination="@id/navigation_match_list" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_photo_matcher"
+        android:name="com.grandefirano.spaceforlove.ui.photoMatcher.PhotoMatcherFragment"
+        android:label="@string/title_photo_matcher"
+        tools:layout="@layout/fragment_photo_matcher" >
+        <action
+            android:id="@+id/action_navigation_photo_matcher_to_matchingResultFragment"
+            app:destination="@id/matchingResultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_match_list"
+        android:name="com.grandefirano.spaceforlove.ui.matchList.MatchListFragment"
+        android:label="@string/title_match_list"
+        tools:layout="@layout/fragment_match_list" />
+    <fragment
+        android:id="@+id/matchingResultFragment"
+        android:name="com.grandefirano.spaceforlove.ui.matchingResult.MatchingResultFragment"
+        android:label="matching_result_fragment"
+        tools:layout="@layout/matching_result_fragment" >
+        <action
+            android:id="@+id/action_matchingResultFragment_to_navigation_match_list"
+            app:destination="@id/navigation_match_list" />
+    </fragment>
+</navigation>

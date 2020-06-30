@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SpaceForLove</string>
+    <string name="title_home">Home</string>
+    <string name="title_match_list">MatchList</string>
+    <string name="title_photo_matcher">PhotoMatcher</string>
+    <string name="title_skyscannerfeature">Sky Scanner Feature</string>
+</resources>
