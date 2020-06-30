@@ -7,6 +7,16 @@ import androidx.lifecycle.ViewModel
 class PhotoMatcherViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
+        /*
+        TODO: change for a picture
+         */
+
+
+
+
+        /*
+
+         */
         value = "This is dashboard Fragment"
     }
     val text: LiveData<String> = _text
