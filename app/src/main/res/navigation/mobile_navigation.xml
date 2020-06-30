@@ -37,7 +37,7 @@
         android:id="@+id/matchingResultFragment"
         android:name="com.grandefirano.spaceforlove.ui.matchingResult.MatchingResultFragment"
         android:label="matching_result_fragment"
-        tools:layout="@layout/matching_result_fragment" >
+        tools:layout="@layout/fragment_matching_result" >
         <action
             android:id="@+id/action_matchingResultFragment_to_navigation_match_list"
             app:destination="@id/navigation_match_list" />

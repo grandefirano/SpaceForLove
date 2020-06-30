@@ -21,7 +21,8 @@ class PhotoMatcherViewModel : ViewModel() {
 
 
         GlobalScope.launch {
-        postValue(fetchPhoto().await().explanation)
+        postValue(fetchPhoto().await().url)
+
             }
         /*
 

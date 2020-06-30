@@ -21,7 +21,7 @@ class MatchingResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.matching_result_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_matching_result, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
