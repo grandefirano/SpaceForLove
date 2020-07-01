@@ -22,9 +22,9 @@ class MatchListFragment : Fragment() {
     matchListViewModel =
     ViewModelProviders.of(this).get(MatchListViewModel::class.java)
     val root = inflater.inflate(R.layout.fragment_match_list, container, false)
-    val textView: TextView = root.findViewById(R.id.text_notifications)
+    //val textView: TextView = root.findViewById(R.id.text_notifications)
     matchListViewModel.text.observe(viewLifecycleOwner, Observer {
-      textView.text = it
+    //  textView.text = it
     })
     return root
   }
