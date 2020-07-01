@@ -7,6 +7,8 @@ data class NasaPhotoOfTheDayResponse(
     val date: String,
     val explanation: String,
     val hdurl: String,
+
+    //TODO: check media_type!!!!
     @SerializedName("media_type")
     val mediaType: String,
     @SerializedName("service_version")

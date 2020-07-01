@@ -19,9 +19,6 @@ class PhotoMatcherViewModel @ViewModelInject constructor(
 
     init {
 
-        viewModelScope.launch {
-
-        }
 
     }
 
