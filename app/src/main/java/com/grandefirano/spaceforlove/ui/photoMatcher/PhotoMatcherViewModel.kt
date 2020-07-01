@@ -1,9 +1,10 @@
 package com.grandefirano.spaceforlove.ui.photoMatcher
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.*
 import com.grandefirano.spaceforlove.NasaPhotoOfTheDayResponse
+import com.grandefirano.spaceforlove.Repository
+import com.grandefirano.spaceforlove.RepositoryImpl
 import com.grandefirano.spaceforlove.network.NasaPhotoApiService
 import com.grandefirano.spaceforlove.util.lazyDeferred
 import kotlinx.coroutines.Dispatchers
@@ -11,32 +12,38 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class PhotoMatcherViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        /*
-        TODO: change for a picture
-         */
+class PhotoMatcherViewModel @ViewModelInject constructor(
+    private val repository: Repository
+) : ViewModel() {
 
 
+    init {
 
-        GlobalScope.launch {
-        postValue(fetchPhoto().await().url)
+        viewModelScope.launch {
 
-            }
-        /*
-
-         */
+        }
 
     }
-    val text: LiveData<String> = _text
-
-    suspend fun  fetchPhoto() = withContext(Dispatchers.IO) {
-            val nasa = NasaPhotoApiService.invoke()
-            return@withContext nasa.getPhotoOfTheDay()
 
 
+    val nasaPhotos:LiveData<NasaPhotoOfTheDayResponse> = liveData {
+        val data=repository.fetchNasaPhotoOfTheDay()
+        emit(data)
     }
+
+//
+//    private val _text = MutableLiveData<String>().apply {
+//        /*
+//        TODO: change for a picture
+//         */
+//
+//
+//
+//        \
+//
+//    }
+//    val text: LiveData<String> = _text
+
 
 
 }

@@ -14,9 +14,9 @@ import retrofit2.http.Query
 interface NasaPhotoApiService {
 
     @GET("planetary/apod")
-    fun getPhotoOfTheDay(
+    suspend fun getPhotoOfTheDay(
         @Query("date") date:String=""
-    ):Deferred<NasaPhotoOfTheDayResponse>
+    ):NasaPhotoOfTheDayResponse
 
     //? here or change to app
     companion object{
