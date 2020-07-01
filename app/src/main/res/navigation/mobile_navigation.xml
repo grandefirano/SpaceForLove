@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_match_list"
             app:destination="@id/navigation_match_list" />
+        <action
+            android:id="@+id/action_navigation_home_to_savedMatchesFragment"
+            app:destination="@id/savedMatchesFragment" />
     </fragment>
 
     <fragment
@@ -32,7 +35,11 @@
         android:id="@+id/navigation_match_list"
         android:name="com.grandefirano.spaceforlove.ui.matchList.MatchListFragment"
         android:label="@string/title_match_list"
-        tools:layout="@layout/fragment_match_list" />
+        tools:layout="@layout/fragment_match_list" >
+        <action
+            android:id="@+id/action_navigation_match_list_to_matchDetailsFragment"
+            app:destination="@id/matchDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/matchingResultFragment"
         android:name="com.grandefirano.spaceforlove.ui.matchingResult.MatchingResultFragment"
@@ -41,5 +48,24 @@
         <action
             android:id="@+id/action_matchingResultFragment_to_navigation_match_list"
             app:destination="@id/navigation_match_list" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.grandefirano.spaceforlove.ui.login.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/login_fragment" />
+    <fragment
+        android:id="@+id/matchDetailsFragment"
+        android:name="com.grandefirano.spaceforlove.ui.matchDetails.MatchDetailsFragment"
+        android:label="fragment_match_details"
+        tools:layout="@layout/fragment_match_details" />
+    <fragment
+        android:id="@+id/savedMatchesFragment"
+        android:name="com.grandefirano.spaceforlove.ui.savedlist.SavedMatchesFragment"
+        android:label="saved_matches_fragment"
+        tools:layout="@layout/saved_matches_fragment" >
+        <action
+            android:id="@+id/action_savedMatchesFragment_to_matchDetailsFragment"
+            app:destination="@id/matchDetailsFragment" />
     </fragment>
 </navigation>
