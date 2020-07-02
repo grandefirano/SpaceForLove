@@ -3,26 +3,51 @@ package com.grandefirano.spaceforlove
 import android.accounts.Account
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
+import com.grandefirano.spaceforlove.AuthRepository.AuthenticationState
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class AuthRepositoryImpl @Inject constructor(
-    override val firebaseAuth:FirebaseAuth)
+    override val firebaseAuth:FirebaseAuth
+
+)
     : AuthRepository {
 
+    val _state= MutableLiveData<AuthenticationState>()
+    override val state: LiveData<AuthenticationState>
+    get() = _state
+
     private val TAG = "AuthRepositoryImpl"
+
+
+    init {
+        firebaseAuth.apply {
+            //listen for current user state and change Authentication state respectively
+            addAuthStateListener {
+                if(firebaseAuth.currentUser==null){
+                    _state.postValue(AuthenticationState.UNAUTHENTICATED)
+                }else{
+                    _state.postValue(AuthenticationState.AUTHENTICATED)
+                }
+            }
+        }
+    }
 
     override fun loginWithPasswordIntoFirebase(email: String, password: String){
         if(email.isNotBlank() && password.isNotBlank()){
             firebaseAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener{task->
                     if(task.isSuccessful){
-                        //TODO: go to MainPage
+                        _state.postValue(AuthenticationState.AUTHENTICATED)
                         Log.d(TAG, "loginWithPasswordIntoFirebase: success")
                     }else{
-                        //TODO:show error
+                        _state.postValue(AuthenticationState.UNAUTHENTICATED)
                     }
 
                 }
@@ -71,5 +96,10 @@ class AuthRepositoryImpl @Inject constructor(
 
     override fun loginWithTwitterIntoFirebase() {
         TODO("Not yet implemented")
+    }
+
+
+    override fun logOut() {
+        firebaseAuth.signOut()
     }
 }

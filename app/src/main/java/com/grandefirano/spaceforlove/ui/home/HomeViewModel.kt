@@ -1,31 +1,25 @@
 package com.grandefirano.spaceforlove.ui.home
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.grandefirano.spaceforlove.AuthRepository
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel @ViewModelInject constructor(val authRepository: AuthRepository)
+    : ViewModel() {
+
+
+
+
+    fun logOut() {
+        authRepository.logOut()
+    }
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
     }
-    val text: LiveData<String> = _text
 
 
-
-    //////
-    enum class AuthenticationState {
-        UNAUTHENTICATED,        // Initial state, the user needs to authenticate
-        AUTHENTICATED  ,        // The user has authenticated successfully
-        INVALID_AUTHENTICATION  // Authentication failed
-    }
-
-    val authenticationState = MutableLiveData<AuthenticationState>()
-    var username: String
-
-    init {
-        // In this example, the user is always unauthenticated when MainActivity is launched
-        authenticationState.value = AuthenticationState.UNAUTHENTICATED
-        username = ""
-    }
 }

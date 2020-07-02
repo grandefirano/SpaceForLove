@@ -13,7 +13,7 @@ class SignUpViewModel @ViewModelInject constructor(val authRepository: AuthRepos
     : ViewModel() {
     private val TAG = "SignUpViewModel"
 
-    fun registerWithPassword(){
+    fun registerWithPassword(view:View){
         authRepository.registerWithPasswordIntoFirebase("asd@gmail.com","123456")
 
     }
