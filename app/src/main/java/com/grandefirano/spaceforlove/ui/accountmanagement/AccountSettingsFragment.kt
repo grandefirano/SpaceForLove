@@ -5,11 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.grandefirano.spaceforlove.R
 
 class AccountSettingsFragment : Fragment() {
 
-    private lateinit var settingsViewModel: AccountSettingsViewModel
+    private val settingsViewModel: AccountSettingsViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

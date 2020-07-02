@@ -1,6 +1,7 @@
 package com.grandefirano.spaceforlove
 
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        val bottomNavView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
@@ -23,6 +24,26 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(setOf(
             R.id.navigation_home, R.id.navigation_photo_matcher, R.id.navigation_match_list))
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        bottomNavView.setupWithNavController(navController)
+
+
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+
+            when (destination.id) {
+
+                R.id.login_fragment , R.id.signUpFragment -> {
+                    bottomNavView.visibility=View.GONE
+                }
+
+                else -> {
+                    bottomNavView.visibility=View.VISIBLE
+                }
+
+            }
+
+        }
+
+
     }
 }

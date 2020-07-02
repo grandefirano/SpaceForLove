@@ -10,7 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.navGraphViewModels
 import com.grandefirano.spaceforlove.R
 import com.grandefirano.spaceforlove.databinding.LoginFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
 

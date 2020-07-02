@@ -6,16 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.grandefirano.spaceforlove.R
 
 class SavedMatchesFragment : Fragment() {
 
-    companion object {
-        fun newInstance() =
-            SavedMatchesFragment()
-    }
 
-    private lateinit var viewModel: SavedMatchesViewModel
+    private val viewModel: SavedMatchesViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +23,7 @@ class SavedMatchesFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SavedMatchesViewModel::class.java)
-        // TODO: Use the ViewModel
+         // TODO: Use the ViewModel
     }
 
 }

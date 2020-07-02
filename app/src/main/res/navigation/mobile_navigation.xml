@@ -50,10 +50,14 @@
             app:destination="@id/navigation_match_list" />
     </fragment>
     <fragment
-        android:id="@+id/loginFragment"
+        android:id="@+id/login_fragment"
         android:name="com.grandefirano.spaceforlove.ui.login.LoginFragment"
         android:label="login_fragment"
-        tools:layout="@layout/login_fragment" />
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
     <fragment
         android:id="@+id/matchDetailsFragment"
         android:name="com.grandefirano.spaceforlove.ui.matchDetails.MatchDetailsFragment"
@@ -68,4 +72,9 @@
             android:id="@+id/action_savedMatchesFragment_to_matchDetailsFragment"
             app:destination="@id/matchDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.grandefirano.spaceforlove.ui.accountmanagement.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
 </navigation>
