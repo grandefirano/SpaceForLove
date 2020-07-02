@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        val authenticationState =authRepository.state.observeForever{state->
+        authRepository.state.observeForever{state->
             when(state){
                 AuthRepository.AuthenticationState.AUTHENTICATED->{
                     navController.navigate(R.id.navigation_home)

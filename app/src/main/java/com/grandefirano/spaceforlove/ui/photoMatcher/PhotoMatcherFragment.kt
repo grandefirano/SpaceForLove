@@ -6,26 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
-import android.widget.TextView
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.grandefirano.spaceforlove.R
 import com.grandefirano.spaceforlove.SpacePhotoAdapter
-import com.grandefirano.spaceforlove.databinding.FragmentPhotoMatcherBinding
-import com.grandefirano.spaceforlove.util.GlideApp
-import com.grandefirano.spaceforlove.util.RotateTransformation
 import com.yuyakaido.android.cardstackview.*
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_photo_matcher.*
 import kotlinx.android.synthetic.main.fragment_photo_matcher.view.*
 
 @AndroidEntryPoint
@@ -37,6 +26,8 @@ class PhotoMatcherFragment : Fragment(),CardStackListener {
     private val photoMatcherViewModel by navGraphViewModels<PhotoMatcherViewModel>(R.id.mobile_navigation) {
         defaultViewModelProviderFactory
     }
+
+    private var count=0
 
     private val adapter=SpacePhotoAdapter()
     private val layoutManager by lazy {
@@ -71,49 +62,71 @@ class PhotoMatcherFragment : Fragment(),CardStackListener {
         photoMatcherViewModel.nasaPhotos.observe(viewLifecycleOwner, Observer {
             //temporary
 
-            adapter.submitList(listOf(it))
+            adapter.submitList(it)
         })
 
-
-
         return view
-        ////
+
     }
 
-    override fun onCardDisappeared(view: View?, position: Int) {
-        Log.d(TAG, "onCardDisappeared: ${adapter.itemCount-1}  pos: $position")
-        if(position>=adapter.itemCount-1){
-            Log.d(TAG, "onCardDisappeared: That's all")
-        }
-    }
+    
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {
-
+        Log.d(TAG, "onCardDragging: ")
     }
 
     override fun onCardSwiped(direction: Direction?) {
         when(direction){
             Direction.Left->{
                 Log.d(TAG, "onCardSwiped:Left ")
+                photoMatcherViewModel.addDislike()
+                Log.d(TAG, "onCardSwiped: ${photoMatcherViewModel.dislikes}")
             }
             Direction.Right->{
                 Log.d(TAG, "onCardSwiped:Right ")
+                photoMatcherViewModel.addLike()
+                Log.d(TAG, "onCardSwiped: ${photoMatcherViewModel.likes}")
             }
             else->{
                 Log.d(TAG, "onCardSwiped: Incorrect Swipe")
             }
         }
+        count+=1
+        if(count>=adapter.itemCount){
+            Log.d(TAG, "onCardSwiped: That's all")
+
+            navigateToResultFragment()
+
+
+        }
+
+
+    }
+
+    private fun navigateToResultFragment() {
+        val likesCount=photoMatcherViewModel.likes
+        val dislikesCount=photoMatcherViewModel.dislikes
+        val action=PhotoMatcherFragmentDirections
+            .actionPhotoMatcherToResult(likesCount,dislikesCount)
+        findNavController().navigate(action)
     }
 
     override fun onCardCanceled() {
-
+        Log.d(TAG, "onCardCanceled: ")
     }
 
     override fun onCardAppeared(view: View?, position: Int) {
-
+        Log.d(TAG, "onCardAppeared: ")
     }
 
     override fun onCardRewound() {
-
+        Log.d(TAG, "onCardRewound: ")
+    }
+    override fun onCardDisappeared(view: View?, position: Int) {
+        Log.d(TAG, "onCardDisappeared: ${adapter.itemCount-1}  pos: $position")
+        if(position>=adapter.itemCount-1){
+            Log.d(TAG, "onCardDisappeared: That's all")
+            
+        }
     }
 }

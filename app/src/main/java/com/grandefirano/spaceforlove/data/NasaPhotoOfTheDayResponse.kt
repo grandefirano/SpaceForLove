@@ -1,4 +1,4 @@
-package com.grandefirano.spaceforlove
+package com.grandefirano.spaceforlove.data
 
 
 import com.google.gson.annotations.SerializedName

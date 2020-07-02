@@ -13,10 +13,11 @@ import javax.inject.Singleton
 @Singleton
 class RepositoryImpl @Inject constructor():Repository {
 
-    override suspend fun  fetchNasaPhotoOfTheDay() = withContext(Dispatchers.IO) {
+    //TODO:correct date check
+    override suspend fun  fetchNasaPhotoOfTheDay(date:String) = withContext(Dispatchers.IO) {
         val nasa = NasaPhotoApiService.invoke()
         //TODO:Nasa put also videos so this is temporary
-        return@withContext nasa.getPhotoOfTheDay("2020-06-30")
+        return@withContext nasa.getPhotoOfTheDay(date)
     }
 
 

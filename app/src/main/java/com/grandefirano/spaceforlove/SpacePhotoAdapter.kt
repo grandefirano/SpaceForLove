@@ -1,14 +1,12 @@
 package com.grandefirano.spaceforlove
 
-import android.os.Parcel
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.DiffUtil.ItemCallback
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.grandefirano.spaceforlove.data.NasaPhotoOfTheDayResponse
 import com.grandefirano.spaceforlove.databinding.CardViewSpacePhotoBinding
 
 class SpacePhotoAdapter() :

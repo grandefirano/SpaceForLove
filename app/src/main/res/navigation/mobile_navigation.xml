@@ -27,8 +27,15 @@
         android:label="@string/title_photo_matcher"
         tools:layout="@layout/fragment_photo_matcher" >
         <action
-            android:id="@+id/action_navigation_photo_matcher_to_matchingResultFragment"
-            app:destination="@id/matchingResultFragment" />
+            android:id="@+id/action_photoMatcher_to_Result"
+            app:destination="@id/matchingResultFragment" >
+            <argument
+                android:name="likes"
+                android:defaultValue="0" />
+            <argument
+                android:name="dislikes"
+                android:defaultValue="0" />
+        </action>
     </fragment>
 
     <fragment
@@ -48,6 +55,12 @@
         <action
             android:id="@+id/action_matchingResultFragment_to_navigation_match_list"
             app:destination="@id/navigation_match_list" />
+        <argument
+            android:name="likes"
+            app:argType="integer" />
+        <argument
+            android:name="dislikes"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/login_fragment"

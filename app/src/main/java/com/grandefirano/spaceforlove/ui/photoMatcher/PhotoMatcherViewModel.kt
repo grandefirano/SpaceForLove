@@ -1,31 +1,44 @@
 package com.grandefirano.spaceforlove.ui.photoMatcher
 
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import com.grandefirano.spaceforlove.NasaPhotoOfTheDayResponse
+import com.grandefirano.spaceforlove.data.NasaPhotoOfTheDayResponse
 import com.grandefirano.spaceforlove.Repository
-import com.grandefirano.spaceforlove.RepositoryImpl
-import com.grandefirano.spaceforlove.network.NasaPhotoApiService
-import com.grandefirano.spaceforlove.util.lazyDeferred
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class PhotoMatcherViewModel @ViewModelInject constructor(
     private val repository: Repository
 ) : ViewModel() {
 
+    private val TAG = "PhotoMatcherViewModel"
 
     init {
+        Log.d(TAG, "INIt: ")
+    }
+    
 
+    var likes=0
+    var dislikes=0
+
+    fun addDislike() {
+        dislikes++
+    }
+    fun addLike(){
+       likes++
+    }
+
+    fun saveStateOfLikesAndDislikes(){
 
     }
 
 
-    val nasaPhotos:LiveData<NasaPhotoOfTheDayResponse> = liveData {
-        val data=repository.fetchNasaPhotoOfTheDay()
-        emit(data)
+
+    val nasaPhotos:LiveData<List<NasaPhotoOfTheDayResponse>> = liveData {
+        val list= mutableListOf<NasaPhotoOfTheDayResponse>()
+        for(i in 1..4) {
+           list.add(repository.fetchNasaPhotoOfTheDay("2020-06-2$i"))
+        }
+        emit(list as List<NasaPhotoOfTheDayResponse>)
     }
 
 //

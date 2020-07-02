@@ -1,12 +1,9 @@
 package com.grandefirano.spaceforlove
 
-import android.accounts.Account
-import com.grandefirano.spaceforlove.network.NasaPhotoApiService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.grandefirano.spaceforlove.data.NasaPhotoOfTheDayResponse
 
 interface Repository {
 
-    suspend fun fetchNasaPhotoOfTheDay():NasaPhotoOfTheDayResponse
+    suspend fun fetchNasaPhotoOfTheDay(date:String): NasaPhotoOfTheDayResponse
 
 }
