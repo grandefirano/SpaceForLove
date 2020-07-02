@@ -99,6 +99,9 @@ class PhotoMatcherFragment : Fragment(),CardStackListener {
             Direction.Right->{
                 Log.d(TAG, "onCardSwiped:Right ")
             }
+            else->{
+                Log.d(TAG, "onCardSwiped: Incorrect Swipe")
+            }
         }
     }
 

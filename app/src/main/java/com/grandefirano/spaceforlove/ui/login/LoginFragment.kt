@@ -30,7 +30,7 @@ class LoginFragment : Fragment() {
 
         binding.viewmodel=loginViewModel
 
-        return inflater.inflate(R.layout.login_fragment, container, false)
+        return binding.root
     }
 
 }

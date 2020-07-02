@@ -1,6 +1,5 @@
 package com.grandefirano.spaceforlove.ui.accountmanagement
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,7 +9,7 @@ import com.grandefirano.spaceforlove.R
 
 class AccountSettingsFragment : Fragment() {
 
-    private lateinit var viewModel: AccountViewModel
+    private lateinit var settingsViewModel: AccountSettingsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
