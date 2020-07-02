@@ -6,28 +6,31 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.navGraphViewModels
 import com.grandefirano.spaceforlove.R
+import com.grandefirano.spaceforlove.databinding.LoginFragmentBinding
 
 class LoginFragment : Fragment() {
 
-    companion object {
-        fun newInstance() =
-            LoginFragment()
-    }
 
-    private lateinit var viewModel: LoginViewModel
+    private val loginViewModel by navGraphViewModels<LoginViewModel>(R.id.mobile_navigation) {
+        defaultViewModelProviderFactory
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.login_fragment, container, false)
-    }
+        val binding = DataBindingUtil.inflate<LoginFragmentBinding>(
+            inflater,
+            R.layout.login_fragment,
+            container, false
+        )
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        // TODO: Use the ViewModel
+        binding.viewmodel=loginViewModel
+
+        return inflater.inflate(R.layout.login_fragment, container, false)
     }
 
 }

@@ -4,4 +4,6 @@
     <string name="title_match_list">MatchList</string>
     <string name="title_photo_matcher">PhotoMatcher</string>
     <string name="title_skyscannerfeature">Sky Scanner Feature</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
