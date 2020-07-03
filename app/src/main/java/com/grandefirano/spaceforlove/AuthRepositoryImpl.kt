@@ -99,7 +99,7 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override fun getUserUId(): String {
-        TODO("Not yet implemented")
+       return firebaseAuth.currentUser!!.uid
     }
 
 

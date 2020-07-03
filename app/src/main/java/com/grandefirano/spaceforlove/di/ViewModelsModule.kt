@@ -1,9 +1,6 @@
 package com.grandefirano.spaceforlove.di
 
-import com.grandefirano.spaceforlove.AuthRepository
-import com.grandefirano.spaceforlove.AuthRepositoryImpl
-import com.grandefirano.spaceforlove.Repository
-import com.grandefirano.spaceforlove.RepositoryImpl
+import com.grandefirano.spaceforlove.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -19,4 +16,7 @@ abstract class ViewModelsModule {
 
     @Binds
     abstract fun bindsAuthRepository(authRepositoryImpl: AuthRepositoryImpl):AuthRepository
+
+    @Binds
+    abstract fun bindsDatavaseRepository(databaseRepositoryImpl: DatabaseRepositoryImpl):DatabaseRepository
 }

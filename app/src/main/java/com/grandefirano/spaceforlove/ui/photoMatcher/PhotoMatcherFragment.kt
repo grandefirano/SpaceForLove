@@ -13,6 +13,7 @@ import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.grandefirano.spaceforlove.R
 import com.grandefirano.spaceforlove.SpacePhotoAdapter
+import com.grandefirano.spaceforlove.data.entity.NasaPhotoOfTheDay
 import com.yuyakaido.android.cardstackview.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_photo_matcher.view.*
@@ -59,7 +60,7 @@ class PhotoMatcherFragment : Fragment(),CardStackListener {
             }
         }
 
-        photoMatcherViewModel.nasaPhotos.observe(viewLifecycleOwner, Observer {
+        photoMatcherViewModel.nasaPhotosResponse.observe(viewLifecycleOwner, Observer {
             //temporary
 
             adapter.submitList(it)
@@ -80,11 +81,14 @@ class PhotoMatcherFragment : Fragment(),CardStackListener {
             Direction.Left->{
                 Log.d(TAG, "onCardSwiped:Left ")
                 photoMatcherViewModel.addDislike()
+                photoMatcherViewModel.addPhotoToList(count,false)
                 Log.d(TAG, "onCardSwiped: ${photoMatcherViewModel.dislikes}")
+
             }
             Direction.Right->{
                 Log.d(TAG, "onCardSwiped:Right ")
                 photoMatcherViewModel.addLike()
+                photoMatcherViewModel.addPhotoToList(count,true)
                 Log.d(TAG, "onCardSwiped: ${photoMatcherViewModel.likes}")
             }
             else->{
@@ -106,8 +110,9 @@ class PhotoMatcherFragment : Fragment(),CardStackListener {
     private fun navigateToResultFragment() {
         val likesCount=photoMatcherViewModel.likes
         val dislikesCount=photoMatcherViewModel.dislikes
+        val array=photoMatcherViewModel.listOfPhotos.toTypedArray()
         val action=PhotoMatcherFragmentDirections
-            .actionPhotoMatcherToResult(likesCount,dislikesCount)
+            .actionPhotoMatcherToResult(likesCount,dislikesCount, array)
         findNavController().navigate(action)
     }
 

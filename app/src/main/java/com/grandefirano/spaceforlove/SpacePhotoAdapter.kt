@@ -6,24 +6,24 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil.ItemCallback
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.grandefirano.spaceforlove.data.entity.NasaPhotoOfTheDay
+import com.grandefirano.spaceforlove.network.NasaPhotoOfTheDayResponse
 import com.grandefirano.spaceforlove.databinding.CardViewSpacePhotoBinding
 
 class SpacePhotoAdapter() :
-    ListAdapter<NasaPhotoOfTheDay, SpacePhotoAdapter.SpacePhotoViewHolder>(DIFF_CALLBACK) {
+    ListAdapter<NasaPhotoOfTheDayResponse, SpacePhotoAdapter.SpacePhotoViewHolder>(DIFF_CALLBACK) {
 
     companion object {
-        val DIFF_CALLBACK = object : ItemCallback<NasaPhotoOfTheDay>() {
+        val DIFF_CALLBACK = object : ItemCallback<NasaPhotoOfTheDayResponse>() {
             override fun areItemsTheSame(
-                oldItem: NasaPhotoOfTheDay,
-                newItem: NasaPhotoOfTheDay
+                oldItem: NasaPhotoOfTheDayResponse,
+                newItem: NasaPhotoOfTheDayResponse
             ): Boolean {
                 return oldItem.date == newItem.date
             }
 
             override fun areContentsTheSame(
-                oldItem: NasaPhotoOfTheDay,
-                newItem: NasaPhotoOfTheDay
+                oldItem: NasaPhotoOfTheDayResponse,
+                newItem: NasaPhotoOfTheDayResponse
             ): Boolean {
                 return oldItem.url == newItem.url &&
                         oldItem.explanation == newItem.url &&

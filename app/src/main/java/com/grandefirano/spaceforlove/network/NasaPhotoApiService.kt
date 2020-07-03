@@ -1,6 +1,5 @@
 package com.grandefirano.spaceforlove.network
 
-import com.grandefirano.spaceforlove.data.entity.NasaPhotoOfTheDay
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -15,7 +14,7 @@ interface NasaPhotoApiService {
     @GET("planetary/apod")
     suspend fun getPhotoOfTheDay(
         @Query("date") date:String=""
-    ): NasaPhotoOfTheDay
+    ): NasaPhotoOfTheDayResponse
 
     //? here or change to app
     companion object{

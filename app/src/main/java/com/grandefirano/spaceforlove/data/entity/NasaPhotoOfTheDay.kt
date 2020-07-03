@@ -1,30 +1,43 @@
 package com.grandefirano.spaceforlove.data.entity
 
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import com.google.gson.annotations.Expose
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 
 data class NasaPhotoOfTheDay(
-    @Expose
-    val date: String,
-    @Expose
-    val explanation: String,
-    @SerializedName("media_type")
-    val mediaType: String?,
-    @Expose
-    val title: String,
-    @Expose
-    val url: String,
-    @Expose
-    @PrimaryKey(autoGenerate = true)
-    val id:Int,
-    @Expose
-    var liked:Boolean?
-){
+    val date: String?,
+    val title: String?,
+    val url: String?,
+    val liked:Boolean?
+):Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readValue(Boolean::class.java.classLoader) as? Boolean
+    ) {
+    }
 
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(date)
+        parcel.writeString(title)
+        parcel.writeString(url)
+        parcel.writeValue(liked)
+    }
 
+    override fun describeContents(): Int {
+        return 0
+    }
 
+    companion object CREATOR : Parcelable.Creator<NasaPhotoOfTheDay> {
+        override fun createFromParcel(parcel: Parcel): NasaPhotoOfTheDay {
+            return NasaPhotoOfTheDay(parcel)
+        }
+
+        override fun newArray(size: Int): Array<NasaPhotoOfTheDay?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

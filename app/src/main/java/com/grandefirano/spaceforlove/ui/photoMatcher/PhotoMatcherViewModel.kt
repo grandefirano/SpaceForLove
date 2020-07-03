@@ -3,8 +3,9 @@ package com.grandefirano.spaceforlove.ui.photoMatcher
 import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import com.grandefirano.spaceforlove.data.entity.NasaPhotoOfTheDay
+import com.grandefirano.spaceforlove.network.NasaPhotoOfTheDayResponse
 import com.grandefirano.spaceforlove.Repository
+import com.grandefirano.spaceforlove.data.entity.NasaPhotoOfTheDay
 
 class PhotoMatcherViewModel @ViewModelInject constructor(
     private val repository: Repository
@@ -20,6 +21,8 @@ class PhotoMatcherViewModel @ViewModelInject constructor(
     var likes=0
     var dislikes=0
 
+    val listOfPhotos= arrayListOf<NasaPhotoOfTheDay>()
+
     fun addDislike() {
         dislikes++
     }
@@ -33,26 +36,25 @@ class PhotoMatcherViewModel @ViewModelInject constructor(
 
 
 
-    val nasaPhotos:LiveData<List<NasaPhotoOfTheDay>> = liveData {
-        val list= mutableListOf<NasaPhotoOfTheDay>()
+
+    val nasaPhotosResponse:LiveData<List<NasaPhotoOfTheDayResponse>> = liveData {
+        val list= mutableListOf<NasaPhotoOfTheDayResponse>()
         for(i in 1..4) {
            list.add(repository.fetchNasaPhotoOfTheDay("2020-06-2$i"))
         }
-        emit(list as List<NasaPhotoOfTheDay>)
+        emit(list as List<NasaPhotoOfTheDayResponse>)
     }
 
-//
-//    private val _text = MutableLiveData<String>().apply {
-//        /*
-//        TODO: change for a picture
-//         */
-//
-//
-//
-//        \
-//
-//    }
-//    val text: LiveData<String> = _text
+    fun addPhotoToList(position:Int,liked:Boolean){
+        nasaPhotosResponse.value!![position]?.let {
+            listOfPhotos.add(NasaPhotoOfTheDay(
+                it.date,
+                it.title,
+                it.url,
+                liked))
+        }
+
+    }
 
 
 

@@ -6,7 +6,7 @@
 
         <variable
             name="photoOfTheDay"
-            type="com.grandefirano.spaceforlove.data.entity.NasaPhotoOfTheDay" />
+            type="com.grandefirano.spaceforlove.network.NasaPhotoOfTheDayResponse" />
     </data>
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"

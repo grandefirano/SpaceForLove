@@ -1,6 +1,7 @@
 package com.grandefirano.spaceforlove.ui.matchingResult
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,14 +9,17 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
+import com.google.common.collect.Lists
 import com.grandefirano.spaceforlove.R
+import com.grandefirano.spaceforlove.data.entity.NasaPhotoOfTheDay
 import com.grandefirano.spaceforlove.databinding.FragmentMatchingResultBinding
 
 import com.grandefirano.spaceforlove.ui.photoMatcher.PhotoMatcherViewModel
+import java.util.*
 
 class MatchingResultFragment : Fragment() {
 
-
+    private val TAG = "MatchingResultFragment"
     private val viewModel: MatchingResultViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -44,6 +48,11 @@ class MatchingResultFragment : Fragment() {
         val args: MatchingResultFragmentArgs by navArgs()
         viewModel.likes=args.likes
         viewModel.dislikes=args.dislikes
+        viewModel.photos= args.listOfPhotos.toList()
+        
+        val b=viewModel.saveSwipedPhotosToFirebase()
+
+        Log.d(TAG, "onViewCreated:saved successfully? $b")
 
     }
 
