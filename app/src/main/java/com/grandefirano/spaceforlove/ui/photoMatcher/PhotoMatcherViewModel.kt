@@ -22,6 +22,7 @@ class PhotoMatcherViewModel @ViewModelInject constructor(
     var dislikes=0
 
     val listOfPhotos= arrayListOf<NasaPhotoOfTheDay>()
+    val mapOfReviews= hashMapOf<String,Boolean>()
 
     fun addDislike() {
         dislikes++
@@ -47,11 +48,11 @@ class PhotoMatcherViewModel @ViewModelInject constructor(
 
     fun addPhotoToList(position:Int,liked:Boolean){
         nasaPhotosResponse.value!![position]?.let {
-            listOfPhotos.add(NasaPhotoOfTheDay(
-                it.date,
-                it.title,
-                it.url,
-                liked))
+            mapOfReviews[it.date] = liked
+
+//            listOfPhotos.add(NasaPhotoOfTheDay(
+//                it.date,
+//                liked))
         }
 
     }

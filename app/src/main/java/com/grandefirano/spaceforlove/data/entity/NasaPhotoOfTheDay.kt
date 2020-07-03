@@ -8,13 +8,9 @@ import com.google.gson.annotations.SerializedName
 
 data class NasaPhotoOfTheDay(
     val date: String?,
-    val title: String?,
-    val url: String?,
     val liked:Boolean?
 ):Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readString(),
         parcel.readString(),
         parcel.readValue(Boolean::class.java.classLoader) as? Boolean
     ) {
@@ -22,8 +18,6 @@ data class NasaPhotoOfTheDay(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(date)
-        parcel.writeString(title)
-        parcel.writeString(url)
         parcel.writeValue(liked)
     }
 

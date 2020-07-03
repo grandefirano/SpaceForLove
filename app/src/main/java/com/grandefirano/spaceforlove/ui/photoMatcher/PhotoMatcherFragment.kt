@@ -13,6 +13,7 @@ import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.grandefirano.spaceforlove.R
 import com.grandefirano.spaceforlove.SpacePhotoAdapter
+import com.grandefirano.spaceforlove.data.entity.MapOfReviews
 import com.grandefirano.spaceforlove.data.entity.NasaPhotoOfTheDay
 import com.yuyakaido.android.cardstackview.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -110,9 +111,10 @@ class PhotoMatcherFragment : Fragment(),CardStackListener {
     private fun navigateToResultFragment() {
         val likesCount=photoMatcherViewModel.likes
         val dislikesCount=photoMatcherViewModel.dislikes
-        val array=photoMatcherViewModel.listOfPhotos.toTypedArray()
+//        val array=photoMatcherViewModel.listOfPhotos.toTypedArray()
+        val mapOfReviews=MapOfReviews(photoMatcherViewModel.mapOfReviews)
         val action=PhotoMatcherFragmentDirections
-            .actionPhotoMatcherToResult(likesCount,dislikesCount, array)
+            .actionPhotoMatcherToResult(likesCount,dislikesCount,mapOfReviews)
         findNavController().navigate(action)
     }
 

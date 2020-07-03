@@ -1,11 +1,9 @@
 package com.grandefirano.spaceforlove
 
-import com.grandefirano.spaceforlove.data.entity.NasaPhotoOfTheDay
-import com.grandefirano.spaceforlove.data.entity.SetOfTheMonth
-import com.grandefirano.spaceforlove.network.NasaPhotoOfTheDayResponse
+import com.grandefirano.spaceforlove.data.entity.MapOfReviews
 
 interface DatabaseRepository {
 
-    suspend fun saveSwipedPhotosToFirebase(userUId:String, setOfTheMonth: SetOfTheMonth):Boolean
+    suspend fun saveSwipedPhotosToFirebase(userUId:String, mapOfReviews: MapOfReviews):Boolean
     suspend fun getSwipedPhotosFromFirebase()
 }

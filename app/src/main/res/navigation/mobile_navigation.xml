@@ -62,8 +62,8 @@
             android:name="dislikes"
             app:argType="integer" />
         <argument
-            android:name="listOfPhotos"
-            app:argType="com.grandefirano.spaceforlove.data.entity.NasaPhotoOfTheDay[]" />
+            android:name="mapOfReviews"
+            app:argType="com.grandefirano.spaceforlove.data.entity.MapOfReviews" />
     </fragment>
     <fragment
         android:id="@+id/login_fragment"

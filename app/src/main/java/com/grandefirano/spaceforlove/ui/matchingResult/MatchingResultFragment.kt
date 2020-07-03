@@ -48,7 +48,7 @@ class MatchingResultFragment : Fragment() {
         val args: MatchingResultFragmentArgs by navArgs()
         viewModel.likes=args.likes
         viewModel.dislikes=args.dislikes
-        viewModel.photos= args.listOfPhotos.toList()
+        viewModel.mapOfReviews=args.mapOfReviews
         
         val b=viewModel.saveSwipedPhotosToFirebase()
 
