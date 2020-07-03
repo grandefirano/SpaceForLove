@@ -7,4 +7,7 @@ class MatchingResultViewModel : ViewModel() {
 
     var likes=0
     var dislikes=0
+
+
+
 }

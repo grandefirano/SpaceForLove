@@ -6,32 +6,29 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil.ItemCallback
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.grandefirano.spaceforlove.data.NasaPhotoOfTheDayResponse
+import com.grandefirano.spaceforlove.data.entity.NasaPhotoOfTheDay
 import com.grandefirano.spaceforlove.databinding.CardViewSpacePhotoBinding
 
 class SpacePhotoAdapter() :
-    ListAdapter<NasaPhotoOfTheDayResponse, SpacePhotoAdapter.SpacePhotoViewHolder>(DIFF_CALLBACK) {
+    ListAdapter<NasaPhotoOfTheDay, SpacePhotoAdapter.SpacePhotoViewHolder>(DIFF_CALLBACK) {
 
     companion object {
-        val DIFF_CALLBACK = object : ItemCallback<NasaPhotoOfTheDayResponse>() {
+        val DIFF_CALLBACK = object : ItemCallback<NasaPhotoOfTheDay>() {
             override fun areItemsTheSame(
-                oldItem: NasaPhotoOfTheDayResponse,
-                newItem: NasaPhotoOfTheDayResponse
+                oldItem: NasaPhotoOfTheDay,
+                newItem: NasaPhotoOfTheDay
             ): Boolean {
                 return oldItem.date == newItem.date
             }
 
             override fun areContentsTheSame(
-                oldItem: NasaPhotoOfTheDayResponse,
-                newItem: NasaPhotoOfTheDayResponse
+                oldItem: NasaPhotoOfTheDay,
+                newItem: NasaPhotoOfTheDay
             ): Boolean {
                 return oldItem.url == newItem.url &&
                         oldItem.explanation == newItem.url &&
-                        oldItem.hdurl == newItem.url &&
                         oldItem.mediaType == newItem.url &&
-                        oldItem.serviceVersion == newItem.url &&
-                        oldItem.title == newItem.url &&
-                        oldItem.serviceVersion == newItem.url
+                        oldItem.title == newItem.url
             }
 
         }

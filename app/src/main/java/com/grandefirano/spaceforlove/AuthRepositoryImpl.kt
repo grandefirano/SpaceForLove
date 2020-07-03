@@ -98,6 +98,10 @@ class AuthRepositoryImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
+    override fun getUserUId(): String {
+        TODO("Not yet implemented")
+    }
+
 
     override fun logOut() {
         firebaseAuth.signOut()

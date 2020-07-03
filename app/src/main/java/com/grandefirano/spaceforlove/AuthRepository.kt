@@ -26,4 +26,6 @@ interface AuthRepository {
     fun registerIntoFirebase(account: Account)
     fun loginWithFacebookIntoFirebase()
     fun loginWithTwitterIntoFirebase()
+
+    fun getUserUId():String
 }
