@@ -1,9 +1,9 @@
 package com.grandefirano.spaceforlove
 
-import com.grandefirano.spaceforlove.data.entity.MapOfReviews
+import com.grandefirano.spaceforlove.data.entity.ReviewOfPhotos
 
 interface DatabaseRepository {
 
-    suspend fun saveSwipedPhotosToFirebase(userUId:String, mapOfReviews: MapOfReviews):Boolean
+    suspend fun saveSwipedPhotosToFirebase(userUId:String, reviewOfPhotos: ReviewOfPhotos):Boolean
     suspend fun getSwipedPhotosFromFirebase()
 }

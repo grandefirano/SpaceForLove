@@ -2,10 +2,8 @@ package com.grandefirano.spaceforlove
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
-import com.grandefirano.spaceforlove.data.entity.MapOfReviews
+import com.grandefirano.spaceforlove.data.entity.ReviewOfPhotos
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.lang.Exception
@@ -19,11 +17,11 @@ class DatabaseRepositoryImpl @Inject constructor(val firebaseFirestore: Firebase
 
     override suspend fun saveSwipedPhotosToFirebase(
         userUId: String,
-        mapOfReviews: MapOfReviews
+        reviewOfPhotos: ReviewOfPhotos
     ): Boolean {
 
         return withContext(Dispatchers.IO) {
-            Log.d(TAG, "saveSwipedPhotosToFirebase: user id $userUId and map first ${mapOfReviews.photos.keys} ")
+            Log.d(TAG, "saveSwipedPhotosToFirebase: user id $userUId and map first ${reviewOfPhotos.photos.keys} ")
             //TODO:create when doesnt exist document /check
             /*...
              val ref = firebaseFirestore
@@ -37,7 +35,7 @@ class DatabaseRepositoryImpl @Inject constructor(val firebaseFirestore: Firebase
                 val ref = firebaseFirestore
                     .collection("reviews")
                     .document("2020-06")
-                    .update(userUId,mapOfReviews)
+                    .update(userUId,reviewOfPhotos)
                     .await()
                 Log.d(TAG, "saveSwipedPhotosToFirebase:try after await ")
                 true

@@ -9,13 +9,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
-import com.google.common.collect.Lists
 import com.grandefirano.spaceforlove.R
-import com.grandefirano.spaceforlove.data.entity.NasaPhotoOfTheDay
 import com.grandefirano.spaceforlove.databinding.FragmentMatchingResultBinding
-
-import com.grandefirano.spaceforlove.ui.photoMatcher.PhotoMatcherViewModel
-import java.util.*
 
 class MatchingResultFragment : Fragment() {
 
@@ -48,7 +43,7 @@ class MatchingResultFragment : Fragment() {
         val args: MatchingResultFragmentArgs by navArgs()
         viewModel.likes=args.likes
         viewModel.dislikes=args.dislikes
-        viewModel.mapOfReviews=args.mapOfReviews
+        viewModel.reviewOfPhotos=args.reviewOfPhotos
         
         val b=viewModel.saveSwipedPhotosToFirebase()
 

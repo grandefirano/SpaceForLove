@@ -19,6 +19,9 @@ class AuthRepositoryImpl @Inject constructor(
 )
     : AuthRepository {
 
+    //TODO:to main viewmodel?
+    //get  task.await() and methods in viewmodel to set state from main activity
+
     val _state= MutableLiveData<AuthenticationState>()
     override val state: LiveData<AuthenticationState>
     get() = _state

@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.grandefirano.spaceforlove.AuthRepository
 import com.grandefirano.spaceforlove.DatabaseRepository
-import com.grandefirano.spaceforlove.data.entity.NasaPhotoOfTheDay
-import com.grandefirano.spaceforlove.data.entity.MapOfReviews
+import com.grandefirano.spaceforlove.data.entity.ReviewOfPhotos
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -20,14 +19,14 @@ class MatchingResultViewModel @ViewModelInject constructor(
     var likes=0
     var dislikes=0
 
-    lateinit var mapOfReviews: MapOfReviews
+    lateinit var reviewOfPhotos: ReviewOfPhotos
 
 
     fun saveSwipedPhotosToFirebase(){
 
 
         CoroutineScope(viewModelScope.coroutineContext).launch {
-            val result=databaseRepository.saveSwipedPhotosToFirebase(authRepository.getUserUId(),mapOfReviews)
+            val result=databaseRepository.saveSwipedPhotosToFirebase(authRepository.getUserUId(),reviewOfPhotos)
             Log.d(TAG, "saveSwipedPhotosToFirebase: result $result")
         }
 
