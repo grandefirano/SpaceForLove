@@ -5,74 +5,50 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.grandefirano.spaceforlove.AuthRepository.AuthenticationState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class AuthRepositoryImpl @Inject constructor(
     override val firebaseAuth:FirebaseAuth
+) : AuthRepository {
 
-)
-    : AuthRepository {
-
-    //TODO:to main viewmodel?
-    //get  task.await() and methods in viewmodel to set state from main activity
-
-    val _state= MutableLiveData<AuthenticationState>()
-    override val state: LiveData<AuthenticationState>
-    get() = _state
 
     private val TAG = "AuthRepositoryImpl"
 
+    override suspend fun loginWithPasswordIntoFirebase(email: String, password: String): AuthResult? {
+        return if(email.isNotBlank() && password.isNotBlank()) {
 
-    init {
-        firebaseAuth.apply {
-            //listen for current user state and change Authentication state respectively
-            addAuthStateListener {
-                if(firebaseAuth.currentUser==null){
-                    _state.postValue(AuthenticationState.UNAUTHENTICATED)
-                }else{
-                    _state.postValue(AuthenticationState.AUTHENTICATED)
-                }
+            withContext(Dispatchers.IO) {
+                firebaseAuth.signInWithEmailAndPassword(email, password).await()
+
             }
-        }
-    }
-
-    override fun loginWithPasswordIntoFirebase(email: String, password: String){
-        if(email.isNotBlank() && password.isNotBlank()){
-            firebaseAuth.signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener{task->
-                    if(task.isSuccessful){
-                        _state.postValue(AuthenticationState.AUTHENTICATED)
-                        Log.d(TAG, "loginWithPasswordIntoFirebase: success")
-                    }else{
-                        _state.postValue(AuthenticationState.UNAUTHENTICATED)
-                    }
-
-                }
+        }else{
+            null
         }
 
     }
 
-    override fun registerWithPasswordIntoFirebase(email: String, password: String) {
-        if(email.isNotBlank()&&password.isNotBlank()) {
+    override suspend fun registerWithPasswordIntoFirebase(email: String, password: String):AuthResult?{
+        return if(email.isNotBlank()&&password.isNotBlank()) {
             val confirmPassword=password
-            if(checkPassword(password,confirmPassword)) {
-                firebaseAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Log.d(TAG, "registerWithPasswordIntoFirebase: registered succesfully")
-                        } else {
-                            Log.d(TAG, "registerWithPasswordIntoFirebase: error while registering")
-                        }
-                    }
+            if (checkPassword(password,confirmPassword)) {
+                firebaseAuth.createUserWithEmailAndPassword(email, password).await()
+            } else{
+                //passwords aren't the same
+                null
             }
         }else{
             //sth is blank
+            null
         }
     }
     //TODO:modify this

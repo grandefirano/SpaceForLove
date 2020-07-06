@@ -2,8 +2,11 @@ package com.grandefirano.spaceforlove
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -14,8 +17,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var authRepository:AuthRepository
+    private val viewModel:MainViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        authRepository.state.observeForever{state->
+        viewModel.state.observe(this){state->
             when(state){
                 AuthRepository.AuthenticationState.AUTHENTICATED->{
                     navController.navigate(R.id.navigation_home)

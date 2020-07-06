@@ -62,8 +62,8 @@
             android:name="dislikes"
             app:argType="integer" />
         <argument
-            android:name="mapOfReviews"
-            app:argType="com.grandefirano.spaceforlove.data.entity.MapOfReviews" />
+            android:name="reviewOfPhotos"
+            app:argType="com.grandefirano.spaceforlove.data.entity.ReviewOfPhotos" />
     </fragment>
     <fragment
         android:id="@+id/login_fragment"
