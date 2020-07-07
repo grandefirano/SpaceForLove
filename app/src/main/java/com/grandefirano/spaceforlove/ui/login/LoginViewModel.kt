@@ -21,7 +21,7 @@ class LoginViewModel @ViewModelInject constructor(val authRepository:AuthReposit
 
     fun loginWithPassword(view:View){
         viewModelScope.launch {
-            val authResult=authRepository.loginWithPasswordIntoFirebase("asd@gmail.com", "123456")
+            val authResult=authRepository.loginWithPasswordIntoFirebase("ddd@gmail.com", "123456")
             Log.d(TAG, "loginWithPassword: ${authResult?.user?.email ?: "nope"}")
 
         }

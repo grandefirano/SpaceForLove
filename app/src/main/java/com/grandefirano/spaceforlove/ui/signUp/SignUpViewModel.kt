@@ -17,7 +17,7 @@ class SignUpViewModel @ViewModelInject constructor(val authRepository: AuthRepos
 
     fun registerWithPassword(view:View){
         viewModelScope.launch {
-            val authResult=authRepository.registerWithPasswordIntoFirebase("asd@gmail.com", "123456")
+            val authResult=authRepository.registerWithPasswordIntoFirebase("ddd@gmail.com", "123456")
             Log.d(TAG, "registerWithPassword: ${authResult?.user?.email ?: "nope"} ")
         }
     }

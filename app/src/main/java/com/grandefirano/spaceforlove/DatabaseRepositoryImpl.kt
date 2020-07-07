@@ -4,7 +4,6 @@ import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.grandefirano.spaceforlove.data.entity.ReviewOfPhotos
-import com.grandefirano.spaceforlove.data.entity.ReviewsForDate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -87,6 +86,25 @@ class DatabaseRepositoryImpl @Inject constructor(val firebaseFirestore: Firebase
         }
     return null
     }
+
+    override suspend fun getReviewFromFirebase(date:String,uId:String): ReviewOfPhotos? {
+        return try {
+            val document = firebaseFirestore
+                .collection("reviews")
+                .document("reviewsByDate")
+                .collection("2020-06")
+                .document(uId)
+                .get()
+                .await()
+
+            document.toObject(ReviewOfPhotos::class.java)
+        }catch (e:Exception){
+            null
+        }
+    }
+
+
+
     private fun comparePhotos(myPhotos:HashMap<String,Boolean>,theirPhotos:HashMap<String,Boolean>):Int{
        var matchingCount=0
         for((key,value) in myPhotos){
@@ -99,7 +117,7 @@ class DatabaseRepositoryImpl @Inject constructor(val firebaseFirestore: Firebase
             }
         }
         Log.d(TAG, "comparePhotos: matching count $matchingCount full list ${myPhotos.size}")
-        val percentage=((matchingCount/myPhotos.size)*100)
+        val percentage=(matchingCount*100)/myPhotos.size
         return percentage
     }
 

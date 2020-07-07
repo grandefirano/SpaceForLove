@@ -7,4 +7,5 @@ interface DatabaseRepository {
 
     suspend fun saveReviewOfPhotosToFirebase(userUId:String, reviewOfPhotos: ReviewOfPhotos):Boolean
     suspend fun getMatchingReviewsFromFirebase(date:String,myReviewOfPhotos: ReviewOfPhotos):DocumentSnapshot?
+    suspend fun getReviewFromFirebase(date:String,uId:String): ReviewOfPhotos?
 }
