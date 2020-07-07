@@ -6,4 +6,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class DetailsOfReview(
     val sex:String,
-    val interestedIn:String) :Parcelable
+    val interestedIn:String) :Parcelable{
+
+    constructor():this("","")
+}

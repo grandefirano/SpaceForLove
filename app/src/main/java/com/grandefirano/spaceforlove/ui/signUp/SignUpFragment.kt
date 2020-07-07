@@ -1,4 +1,4 @@
-package com.grandefirano.spaceforlove.ui.accountmanagement
+package com.grandefirano.spaceforlove.ui.signUp
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SignUpFragment : Fragment() {
 
-    private val signUpViewModel:SignUpViewModel  by activityViewModels()
+    private val signUpViewModel: SignUpViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

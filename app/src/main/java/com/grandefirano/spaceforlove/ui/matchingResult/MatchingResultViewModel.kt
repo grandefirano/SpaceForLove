@@ -26,11 +26,20 @@ class MatchingResultViewModel @ViewModelInject constructor(
 
 
         CoroutineScope(viewModelScope.coroutineContext).launch {
-            val result=databaseRepository.saveSwipedPhotosToFirebase(authRepository.getUserUId(),reviewOfPhotos)
+            val result=databaseRepository.saveReviewOfPhotosToFirebase(authRepository.getUserUId(),reviewOfPhotos)
             Log.d(TAG, "saveSwipedPhotosToFirebase: result $result")
         }
 
     }
+
+    fun findMatches(){
+        CoroutineScope(viewModelScope.coroutineContext).launch {
+            val result=databaseRepository.getMatchingReviewsFromFirebase("2020-06", reviewOfPhotos)
+            Log.d(TAG, "findMatches: result $result")
+        }
+    }
+
+
 
 
 }

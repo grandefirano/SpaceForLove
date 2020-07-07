@@ -90,7 +90,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.grandefirano.spaceforlove.ui.accountmanagement.SignUpFragment"
+        android:name="com.grandefirano.spaceforlove.ui.signUp.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
 </navigation>

@@ -29,7 +29,6 @@ class AuthRepositoryImpl @Inject constructor(
 
             withContext(Dispatchers.IO) {
                 firebaseAuth.signInWithEmailAndPassword(email, password).await()
-
             }
         }else{
             null
@@ -41,7 +40,9 @@ class AuthRepositoryImpl @Inject constructor(
         return if(email.isNotBlank()&&password.isNotBlank()) {
             val confirmPassword=password
             if (checkPassword(password,confirmPassword)) {
-                firebaseAuth.createUserWithEmailAndPassword(email, password).await()
+                withContext(Dispatchers.IO) {
+                    firebaseAuth.createUserWithEmailAndPassword(email, password).await()
+                }
             } else{
                 //passwords aren't the same
                 null

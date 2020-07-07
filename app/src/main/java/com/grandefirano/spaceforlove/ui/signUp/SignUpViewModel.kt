@@ -1,4 +1,4 @@
-package com.grandefirano.spaceforlove.ui.accountmanagement
+package com.grandefirano.spaceforlove.ui.signUp
 
 import android.util.Log
 import android.view.View

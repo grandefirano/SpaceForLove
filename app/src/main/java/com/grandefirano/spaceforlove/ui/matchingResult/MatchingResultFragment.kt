@@ -46,8 +46,9 @@ class MatchingResultFragment : Fragment() {
         viewModel.reviewOfPhotos=args.reviewOfPhotos
         
         val b=viewModel.saveSwipedPhotosToFirebase()
+        val c=viewModel.findMatches()
 
-        Log.d(TAG, "onViewCreated:saved successfully? $b")
+        Log.d(TAG, "onViewCreated:saved successfully? $b matches $c")
 
     }
 

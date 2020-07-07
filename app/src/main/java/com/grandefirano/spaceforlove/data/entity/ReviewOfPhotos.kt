@@ -10,4 +10,8 @@ data class ReviewOfPhotos(
     val photos:HashMap<String,Boolean>,
     val detail:DetailsOfReview
 
-) : Parcelable
+
+
+) : Parcelable{
+    constructor():this(HashMap(),DetailsOfReview())
+}
