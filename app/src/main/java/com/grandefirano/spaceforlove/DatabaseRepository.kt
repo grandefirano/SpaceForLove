@@ -5,7 +5,7 @@ import com.grandefirano.spaceforlove.data.entity.ReviewOfPhotos
 
 interface DatabaseRepository {
 
-    suspend fun saveReviewOfPhotosToFirebase(userUId:String, reviewOfPhotos: ReviewOfPhotos):Boolean
-    suspend fun getMatchingReviewsFromFirebase(date:String,myReviewOfPhotos: ReviewOfPhotos):DocumentSnapshot?
+    suspend fun saveReviewOfPhotosToFirebase(userUId:String, reviewOfPhotos: ReviewOfPhotos,date:String):Boolean
+    suspend fun getMatchingReviewsFromFirebase(userUId: String,myReviewOfPhotos: ReviewOfPhotos,date:String):DocumentSnapshot?
     suspend fun getReviewFromFirebase(date:String,uId:String): ReviewOfPhotos?
 }

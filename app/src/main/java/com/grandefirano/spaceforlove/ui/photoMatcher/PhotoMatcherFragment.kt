@@ -13,7 +13,6 @@ import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.grandefirano.spaceforlove.R
 import com.grandefirano.spaceforlove.SpacePhotoAdapter
-import com.grandefirano.spaceforlove.data.entity.DetailsOfReview
 import com.grandefirano.spaceforlove.data.entity.ReviewOfPhotos
 import com.yuyakaido.android.cardstackview.*
 import dagger.hilt.android.AndroidEntryPoint

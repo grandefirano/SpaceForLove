@@ -8,10 +8,9 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class ReviewOfPhotos(
     val photos:HashMap<String,Boolean>,
-    val detail:DetailsOfReview
-
-
+    val sex:String,
+    val interestedIn:String
 
 ) : Parcelable{
-    constructor():this(HashMap(),DetailsOfReview())
+    constructor():this(HashMap(),"","")
 }

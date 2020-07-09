@@ -1,6 +1,7 @@
 package com.grandefirano.spaceforlove
 
 import android.util.Log
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.grandefirano.spaceforlove.data.entity.ReviewOfPhotos
@@ -12,29 +13,33 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DatabaseRepositoryImpl @Inject constructor(val firebaseFirestore: FirebaseFirestore) : DatabaseRepository {
+class DatabaseRepositoryImpl @Inject constructor(
+    val firebaseFirestore: FirebaseFirestore
+) : DatabaseRepository {
 
     private val TAG = "DatabaseRepositoryImpl"
 
     override suspend fun saveReviewOfPhotosToFirebase(
         userUId: String,
-        reviewOfPhotos: ReviewOfPhotos
+        reviewOfPhotos: ReviewOfPhotos,
+        date:String
     ): Boolean {
 
         return withContext(Dispatchers.IO) {
             Log.d(TAG, "saveSwipedPhotosToFirebase: user id $userUId and map first ${reviewOfPhotos.photos.keys} ")
 
             try {
+
+
                 //changed from one to many documents because of limit of fields
                 //30 photos per person & limit of 40 000 fields
                 //with thousand of user there will be no more fields available to write
                 //also 1 write per second per document can cause errors
 
-
                 val ref = firebaseFirestore
                     .collection("reviews")
                     .document("reviewsByDate")
-                    .collection("2020-06")
+                    .collection(date)
                     .document(userUId)
                     .set(reviewOfPhotos)
                     .await()
@@ -47,23 +52,20 @@ class DatabaseRepositoryImpl @Inject constructor(val firebaseFirestore: Firebase
         }
     }
 
-    override suspend fun getMatchingReviewsFromFirebase(date:String,myReviewOfPhotos: ReviewOfPhotos): DocumentSnapshot? {
+    override suspend fun getMatchingReviewsFromFirebase(userUId: String,
+                                                        myReviewOfPhotos: ReviewOfPhotos,
+                                                        date:String): DocumentSnapshot? {
 
         try{
+
+
+
             val result=firebaseFirestore
                 .collection("reviews")
                 .document("reviewsByDate")
-                .collection("2020-06")
+                .collection(date)
                 .get()
                 .await()
-//
-//            val document=firebaseFirestore
-//                .collection("reviews")
-//                .document("2020-06")
-//                .get()
-//                .await()
-//
-
 
 
        result.documents.forEach {
@@ -74,6 +76,7 @@ class DatabaseRepositoryImpl @Inject constructor(val firebaseFirestore: Firebase
                val photos = review.photos
 
                val percentage=comparePhotos(myPhotos,photos)
+               if(percentage==100)sendNotification(it.id)
 
                Log.d(TAG, "getMatchingReviewsFromFirebase: percentage $percentage")
 
@@ -103,6 +106,10 @@ class DatabaseRepositoryImpl @Inject constructor(val firebaseFirestore: Firebase
         }
     }
 
+    private fun sendNotification(id:String){
+        //TODO:send notification with Firebase Cloud Messaging
+        //*store users tokens to send notification to exact user
+    }
 
 
     private fun comparePhotos(myPhotos:HashMap<String,Boolean>,theirPhotos:HashMap<String,Boolean>):Int{

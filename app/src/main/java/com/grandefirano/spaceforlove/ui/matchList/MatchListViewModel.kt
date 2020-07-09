@@ -25,7 +25,7 @@ class MatchListViewModel  @ViewModelInject constructor(
         CoroutineScope(viewModelScope.coroutineContext).launch {
             val myResult=databaseRepository.getReviewFromFirebase("2020-06",userUid)
             myResult?.let {myResult->
-                val result = databaseRepository.getMatchingReviewsFromFirebase("2020-06", myResult)
+                val result = databaseRepository.getMatchingReviewsFromFirebase(userUid, myResult,"2020-06")
                 Log.d(TAG, "findMatches: result $result")
             }
         }
