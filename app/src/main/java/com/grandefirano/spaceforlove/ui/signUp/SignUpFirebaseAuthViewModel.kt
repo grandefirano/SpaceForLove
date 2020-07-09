@@ -11,7 +11,7 @@ import com.grandefirano.spaceforlove.R
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SignUpViewModel @ViewModelInject constructor(val authRepository: AuthRepository)
+class SignUpFirebaseAuthViewModel @ViewModelInject constructor(val authRepository: AuthRepository)
     : ViewModel() {
     private val TAG = "SignUpViewModel"
 

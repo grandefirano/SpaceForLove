@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.signUp.SignUpAdressFragment">
+
+    <EditText
+        android:id="@+id/et_citySignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="city" />
+
+    <EditText
+        android:id="@+id/et_addressSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:hint="address"
+        android:layout_below="@id/et_citySignUp"/>
+
+    <EditText
+        android:id="@+id/et_phoneSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:hint="phone"
+        android:layout_below="@id/et_addressSignUp"/>
+
+</RelativeLayout>

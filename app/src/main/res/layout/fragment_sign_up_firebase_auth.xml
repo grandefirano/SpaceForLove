@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.grandefirano.spaceforlove.ui.signUp.SignUpViewModel" />
+            type="com.grandefirano.spaceforlove.ui.signUp.SignUpFirebaseAuthViewModel" />
     </data>
     
     
@@ -14,7 +14,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.signUp.SignUpFragment">
+    tools:context=".ui.signUp.SignUpFirebaseAuthFragment">
         <ImageView
             android:id="@+id/imageLogoReg"
             android:layout_width="0dp"

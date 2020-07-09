@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.signUp.SignUpSushiFragment">
+
+    <EditText
+        android:id="@+id/et_likeSushiSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="smoke cigarettes changeeeeeeee to boolean" />
+
+    <EditText
+        android:id="@+id/et_favouriteSushiSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="chaaaange to list"
+        android:layout_below="@id/et_likeSushiSignUp"/>
+
+</RelativeLayout>

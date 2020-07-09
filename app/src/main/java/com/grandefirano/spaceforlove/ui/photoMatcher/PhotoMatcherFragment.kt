@@ -111,7 +111,7 @@ class PhotoMatcherFragment : Fragment(),CardStackListener {
         val likesCount=photoMatcherViewModel.likes
         val dislikesCount=photoMatcherViewModel.dislikes
 //        val array=photoMatcherViewModel.listOfPhotos.toTypedArray()
-        val mapOfReviews=ReviewOfPhotos(photoMatcherViewModel.mapOfReviews, DetailsOfReview("male","female"))
+        val mapOfReviews=ReviewOfPhotos(photoMatcherViewModel.mapOfReviews, "male","female")
         val action=PhotoMatcherFragmentDirections
             .actionPhotoMatcherToResult(likesCount,dislikesCount,mapOfReviews)
         findNavController().navigate(action)

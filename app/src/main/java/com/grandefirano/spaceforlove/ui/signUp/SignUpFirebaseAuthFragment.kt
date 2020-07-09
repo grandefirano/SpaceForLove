@@ -8,26 +8,26 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.grandefirano.spaceforlove.R
-import com.grandefirano.spaceforlove.databinding.FragmentSignUpBinding
+import com.grandefirano.spaceforlove.databinding.FragmentSignUpFirebaseAuthBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SignUpFragment : Fragment() {
+class SignUpFirebaseAuthFragment : Fragment() {
 
-    private val signUpViewModel: SignUpViewModel by activityViewModels()
+    private val signUpFirebaseAuthViewModel: SignUpFirebaseAuthViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = DataBindingUtil.inflate<FragmentSignUpBinding>(
+        val binding = DataBindingUtil.inflate<FragmentSignUpFirebaseAuthBinding>(
             inflater,
-            R.layout.fragment_sign_up,
+            R.layout.fragment_sign_up_firebase_auth,
             container, false
         )
 
-        binding.viewmodel=signUpViewModel
+        binding.viewmodel=signUpFirebaseAuthViewModel
 
         return binding.root
 

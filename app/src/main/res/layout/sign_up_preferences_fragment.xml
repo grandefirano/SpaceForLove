@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.signUp.SignUpPreferencesFragment">
+
+    <EditText
+        android:id="@+id/et_interestedIn_signUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="interested in" />
+
+    <EditText
+        android:id="@+id/et_smokeCigarettesSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="smoke cigarettes changeeeeeeee to boolean"
+        android:layout_below="@id/et_interestedIn_signUp"/>
+
+    <EditText
+        android:id="@+id/et_exceedSpeedLimitSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="chaaaange to boooolean"
+        android:layout_below="@id/et_smokeCigarettesSignUp"/>
+
+</RelativeLayout>

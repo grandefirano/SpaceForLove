@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_navigation_home_to_savedMatchesFragment"
             app:destination="@id/savedMatchesFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_accountSettingsFragment"
+            app:destination="@id/accountSettingsFragment" />
     </fragment>
 
     <fragment
@@ -72,7 +75,7 @@
         tools:layout="@layout/login_fragment" >
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            app:destination="@id/signUpFirebaseAuthFragment" />
     </fragment>
     <fragment
         android:id="@+id/matchDetailsFragment"
@@ -89,8 +92,77 @@
             app:destination="@id/matchDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/signUpFragment"
-        android:name="com.grandefirano.spaceforlove.ui.signUp.SignUpFragment"
-        android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        android:id="@+id/signUpFirebaseAuthFragment"
+        android:name="com.grandefirano.spaceforlove.ui.signUp.SignUpFirebaseAuthFragment"
+        android:label="fragment_sign_up_firebase_auth"
+        tools:layout="@layout/fragment_sign_up_firebase_auth" >
+        <action
+            android:id="@+id/action_signUpFirebaseAuthFragment_to_signUpPersonalDataFragment"
+            app:destination="@id/signUpDetailsNavigation" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountSettingsFragment"
+        android:name="com.grandefirano.spaceforlove.ui.accountmanagement.AccountSettingsFragment"
+        android:label="account_settings_fragment"
+        tools:layout="@layout/account_settings_fragment" />
+    <navigation android:id="@+id/signUpDetailsNavigation"
+        app:startDestination="@id/signUpPersonalDataFragment">
+        <fragment
+            android:id="@+id/signUpPersonalDataFragment"
+            android:name="com.grandefirano.spaceforlove.ui.signUp.SignUpPersonalDataFragment"
+            android:label="sign_up_personal_data_fragment"
+            tools:layout="@layout/sign_up_personal_data_fragment">
+            <action
+                android:id="@+id/action_signUpPersonalDataFragment_to_signUpAdressFragment"
+                app:destination="@id/signUpAdressFragment" />
+            <argument
+                android:name="userDetails"
+                app:argType="com.grandefirano.spaceforlove.data.entity.UserDetails" />
+        </fragment>
+        <fragment
+            android:id="@+id/signUpAdressFragment"
+            android:name="com.grandefirano.spaceforlove.ui.signUp.SignUpAdressFragment"
+            android:label="sign_up_adress_fragment"
+            tools:layout="@layout/sign_up_adress_fragment">
+            <action
+                android:id="@+id/action_signUpAdressFragment_to_signUpPreferencesFragment"
+                app:destination="@id/signUpPreferencesFragment" />
+            <argument
+                android:name="userDetails"
+                app:argType="com.grandefirano.spaceforlove.data.entity.UserDetails" />
+        </fragment>
+        <fragment
+            android:id="@+id/signUpSushiFragment"
+            android:name="com.grandefirano.spaceforlove.ui.signUp.SignUpSushiFragment"
+            android:label="sign_up_sushi_fragment"
+            tools:layout="@layout/sign_up_sushi_fragment">
+            <action
+                android:id="@+id/action_signUpSushiFragment_to_signUpCoronavirusFragment"
+                app:destination="@id/signUpCoronavirusFragment" />
+            <argument
+                android:name="userDetails"
+                app:argType="com.grandefirano.spaceforlove.data.entity.UserDetails" />
+        </fragment>
+        <fragment
+            android:id="@+id/signUpPreferencesFragment"
+            android:name="com.grandefirano.spaceforlove.ui.signUp.SignUpPreferencesFragment"
+            android:label="sign_up_preferences_fragment"
+            tools:layout="@layout/sign_up_preferences_fragment">
+            <action
+                android:id="@+id/action_signUpPreferencesFragment_to_signUpSushiFragment"
+                app:destination="@id/signUpSushiFragment" />
+            <argument
+                android:name="userDetails"
+                app:argType="com.grandefirano.spaceforlove.data.entity.UserDetails" />
+        </fragment>
+        <fragment
+            android:id="@+id/signUpCoronavirusFragment"
+            android:name="com.grandefirano.spaceforlove.ui.signUp.SignUpCoronavirusFragment"
+            android:label="sign_up_coronavirus_fragment"
+            tools:layout="@layout/sign_up_coronavirus_fragment" >
+            <argument
+                android:name="userDetails"
+                app:argType="com.grandefirano.spaceforlove.data.entity.UserDetails" />
+        </fragment>
+    </navigation>
 </navigation>

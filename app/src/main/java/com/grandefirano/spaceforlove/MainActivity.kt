@@ -5,14 +5,12 @@ import android.view.View
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -39,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
             when (destination.id) {
 
-                R.id.login_fragment , R.id.signUpFragment -> {
+                R.id.login_fragment , R.id.signUpFirebaseAuthFragment -> {
                     bottomNavView.visibility=View.GONE
                 }
 
